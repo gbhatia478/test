@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Sayings</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load the JSON file and store the data in a global variable
+            var sayings;
+            $.getJSON("sayings.json", function(data) {
+                sayings = data;
+            });
+            
+            // Function to display a random saying from the JSON file
+            function displayRandomSaying() {
+                if (typeof sayings !== 'undefined') {
+                var randomIndex = Math.floor(Math.random() * sayings.length);
+                var randomSaying = sayings[randomIndex];
+                $("#saying-text").text(randomSaying.text);
+                $("#saying-author").text(randomSaying.author);
+            }
+                }
+            
+            // Event listener for the "Generate Saying" button
+            $("#generate-saying-btn").click(function() {
+                displayRandomSaying();
+            });
+            
+            // Event listener for the "Add Saying" form
+            $("#add-saying-form").submit(function(event) {
+                event.preventDefault();
+                var newSaying = {
+                    id: sayings.length + 1,
+                    text: $("#new-saying-text").val(),
+                    author: $("#new-saying-author").val()
+                };
+                sayings.push(newSaying);
+                $.ajax({
+                    type: "POST",
+                    url: "add-saying.php",
+                    data: JSON.stringify(sayings),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function() {
+                        alert("Saying added successfully!");
+                        $("#new-saying-text").val("");
+                        $("#new-saying-author").val("");
+                    },
+                    error: function() {
+                        alert("Error adding saying.");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Random Sayings</h1>
+    <p>
+        <button id="generate-saying-btn">Generate Saying</button>
+    </p>
+    <p>
+        <strong>Saying:</strong> <span id="saying-text"></span><br>
+        <strong>Author:</strong> <span id="saying-author"></span>
+    </p>
+    <h2>Add a Saying</h2>
+    <form id="add-saying-form">
+        <p>
+            <label for="new-saying-text">Saying:</label><br>
+            <textarea id="new-saying-text" name="new-saying-text" required></textarea>
+        </p>
+        <p>
+            <label for="new-saying-author">Author:</label><br>
+            <input type="text" id="new-saying-author" name="new-saying-author" required>
+        </p>
+        <p>
+            <button type="submit">Add Saying</button>
+        </p>
+    </form>
+</body>
+</html>
