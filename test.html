@@ -2,8 +2,44 @@
 <html>
   <head>
     <title>Weather App</title>
+    <style>
+      body {
+        background-color: #1f1f1f;
+        color: #f0f0f0;
+        font-family: sans-serif;
+        font-size: 1.2rem;
+      }
+      
+      label {
+        display: block;
+        margin-top: 1rem;
+      }
+      
+      input[type="text"], button[type="submit"] {
+        background-color: #2d2d2d;
+        border: none;
+        border-radius: 0.5rem;
+        color: #f0f0f0;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+      
+      input[type="text"] {
+        width: 100%;
+      }
+      
+      button[type="submit"] {
+        cursor: pointer;
+        margin-top: 1rem;
+        width: 100%;
+      }
+      
+      #result {
+        margin-top: 2rem;
+      }
+    </style>
   </head>
-  <body>
+  <body class="dark">
     <!-- Title for the page -->
     <h1>Get the Weather</h1>
     <!-- Explanation for the user -->
@@ -14,9 +50,9 @@
     <!-- Form for user to enter their latitude and longitude -->
     <form id="locationForm">
       <label for="lat">Latitude:</label>
-      <input type="text" id="lat" name="lat"><br><br>
+      <input type="text" id="lat" name="lat">
       <label for="lon">Longitude:</label>
-      <input type="text" id="lon" name="lon"><br><br>
+      <input type="text" id="lon" name="lon">
       <!-- Button to submit the form and get the weather data -->
       <button type="submit">Get Weather</button>
     </form>
