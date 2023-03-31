@@ -2,20 +2,27 @@
 <html>
   <head>
     <title>Weather App</title>
-    <script src="app.js"></script>
   </head>
   <body>
+    <!-- Title for the page -->
     <h1>Get the Weather</h1>
+    <!-- Explanation for the user -->
     <p>Tap the button below to get your current GPS coordinates:</p>
+    <!-- Button to get the user's location -->
     <button id="locationBtn">Get Location</button>
     <br><br>
+    <!-- Form for user to enter their latitude and longitude -->
     <form id="locationForm">
       <label for="lat">Latitude:</label>
       <input type="text" id="lat" name="lat"><br><br>
       <label for="lon">Longitude:</label>
       <input type="text" id="lon" name="lon"><br><br>
+      <!-- Button to submit the form and get the weather data -->
       <button type="submit">Get Weather</button>
     </form>
+    <!-- Placeholder for the weather data to be displayed -->
     <div id="result"></div>
+    <!-- Script tag to load the JavaScript file -->
+    <script src="app.js"></script>
   </body>
 </html>
