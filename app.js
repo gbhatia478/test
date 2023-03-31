@@ -11,7 +11,7 @@ locationForm.addEventListener('submit', function(event) {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        const temp = (data.main.temp - 273.15) * 1.8 + 32;
+      const temp = (data.main.temp - 273.15) * 1.8 + 32;
       const conditions = data.weather[0].description;
       result.innerHTML = `The temperature at latitude ${lat} and longitude ${lon} is ${temp} degrees Fahrenheit with ${conditions}.`;
     })
